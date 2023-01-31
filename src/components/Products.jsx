@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Skeleton from "react-loading-skeleton"
 import { NavLink } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap'
 
 const Products = () => {
 
@@ -76,14 +77,26 @@ const Products = () => {
                       return (
                         <div className="col-md-3 mb-4">
                           <div class="card h-100 text-center p-4" key={product.id}>
-                            <img
-                              src={product.image}
-                              class="card-img-top"
-                              alt={product.title}
-                              height="250px"
-                              width='100%'
-                              
-                            />
+                          <Carousel interval ={null}>
+          <Carousel.Item>
+            <img
+              src={product.image}
+              class="card-img-top"
+              alt={product.title}
+              height="250px"
+              width='100%'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              src={product.image2}
+              class="card-img-top"
+              alt={product.title}
+              height="250px"
+              width='100%'
+            />
+          </Carousel.Item>
+        </Carousel>
                             <div class="card-body">
                               <h5 class="card-title mb-0">{product.title}</h5>
                               <p class="card-text lead fw-bold">${product.price}</p>

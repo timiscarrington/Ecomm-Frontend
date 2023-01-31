@@ -1,78 +1,86 @@
-import React from "react";
+import React, { useState } from 'react';
 
-function Register() {
+const Register = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:8000/api/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to register');
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <div>
-      <div className="register">
-        <form>
-          <div className="mb-3">
-            <label for="userName" className="form-label">
-              Name
-            </label>
-            <input
-              type="text"
-              className="form-control mb-3"
-              id="userName"
-              aria-describedby="userName"
-            />
-            <label for="phone" className="form-label">
-              Contact No.
-            </label>
-            <input
-              type="tel"
-              className="form-control mb-3"
-              id="phone"
-              aria-describedby="phone"
-            />
-            <label for="exampleInputEmail1" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
-          </div>
-          <div className="mb-3">
-            <label for="exampleInputPassword1" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control mb-3"
-              id="exampleInputPassword1"
-            />
-            <label for="exampleConfirmtPassword1" className="form-label">
-              Confirm Password
-            </label>
-            <input
-              type="confirm-password"
-              className="form-control"
-              id="exampleConfirm    Password1"
-            />
-          </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-              checked
-            />
-            <label className="form-check-label" for="exampleCheck1">
-              Login once registered
-            </label>
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="username">First Name</label>
+        <input
+          type="text"
+          className="form-control"
+          id="first_name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
       </div>
-    </div>
+      <div className="form-group">
+        <label htmlFor="username">Last Name</label>
+        <input
+          type="text"
+          className="form-control"
+          id="last_name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          className="form-control"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button type="submit" className="btn btn-primary">
+        Register
+      </button>
+    </form>
   );
-}
+};
 
 export default Register;

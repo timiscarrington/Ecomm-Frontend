@@ -8,6 +8,8 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import About from './components/About';
 import Contact from './components/Contact'
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route exact path="/checkout" element={<Checkout/>} />
         <Route exact path="/about" element={<About/>} />
         <Route exact path="/contact" element={<Contact/>} />
+        <Route exact path="/register" element={<Register/>} />
+        <Route exact path="/login" element={<Login/>} />
       </Routes>
     </>
   );
