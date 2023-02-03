@@ -54,10 +54,10 @@ const ShowProduct = () => {
         <div className="col-md-6">
         <Carousel>
         <Carousel.Item>
-        <img src={product.image} alt={product.title} height='600px' width='500px' />
+        <img src={product.image} alt={product.title} height='auto' width='500px' />
         </Carousel.Item>
         <Carousel.Item>
-        <img src={product.image2} alt={product.title} height='600px' width='500px' />
+        <img src={product.image2} alt={product.title} height='auto' width='500px' />
         </Carousel.Item>
         </Carousel>
         </div>
@@ -66,10 +66,7 @@ const ShowProduct = () => {
         {product.category}
         </h4>
         <h1 className='display-5'>{product.title}'s Gum</h1>
-        <p className="lead fw-bolder">
-        Rating {product.rating && product.rate}
-        <i className='fa fa-star'></i>
-        </p>
+        
         <h3 className="display-6 fw-bold my-4">
         $ {product.price}.00
         </h3>

@@ -10,6 +10,7 @@ import About from './components/About';
 import Contact from './components/Contact'
 import Register from './components/Register';
 import Login from './components/Login';
+import SavedCart from './components/SavedCart';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/contact" element={<Contact/>} />
         <Route exact path="/register" element={<Register/>} />
         <Route exact path="/login" element={<Login/>} />
+        <Route exact path='/saved-carts' element={<SavedCart />}/>
       </Routes>
     </>
   );

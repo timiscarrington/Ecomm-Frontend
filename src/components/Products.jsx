@@ -84,7 +84,7 @@ const Products = () => {
               class="card-img-top"
               alt={product.title}
               height="250px"
-              width='100%'
+              width='auto'
             />
           </Carousel.Item>
           <Carousel.Item>

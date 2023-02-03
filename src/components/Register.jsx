@@ -3,11 +3,14 @@ import React, { useState } from 'react';
 const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('');
 
     try {
       const response = await fetch('http://localhost:8000/api/register/', {
@@ -24,11 +27,13 @@ const Register = () => {
       });
 
       if (!response.ok) {
+        setMessage('Registration failed. Please try again.');
         throw new Error('Failed to register');
       }
 
       const data = await response.json();
       console.log(data);
+      setMessage('Registration successful!');
     } catch (err) {
       console.error(err);
     }
@@ -56,6 +61,7 @@ const Register = () => {
           onChange={(e) => setLastName(e.target.value)}
         />
       </div>
+
       <div className="form-group">
         <label htmlFor="email">Email</label>
         <input
@@ -76,11 +82,19 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit" className="btn btn-primary">
-        Register
-      </button>
-    </form>
-  );
+      <div className="form-group">
+        <button type="submit" className="btn btn-primary">
+          Register
+        </button>
+      </div>
+      {message && (
+        <div className="alert alert-info">
+            {message}
+        </div>
+        )}
+        </form>
+);
 };
 
 export default Register;
+
