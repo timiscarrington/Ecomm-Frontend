@@ -14,7 +14,7 @@ const Products = () => {
         
         setLoading(true)
         console.log('Fetching...');
-        fetch('http://localhost:8000/api/products/')
+        fetch('http://localhost:4000/products')
           
             .then((response) => response.json())
             .then((data) => {
@@ -76,7 +76,7 @@ const Products = () => {
                     {filter.map((product, index) => {
                       return (
                         <div className="col-md-3 mb-4">
-                          <div class="card h-100 text-center p-4" key={product.id}>
+                          <div class="card h-100 text-center p-4" key={product._id}>
                           <Carousel interval ={null}>
           <Carousel.Item>
             <img
@@ -100,7 +100,7 @@ const Products = () => {
                             <div class="card-body">
                               <h5 class="card-title mb-0">{product.title}</h5>
                               <p class="card-text lead fw-bold">${product.price}</p>
-                              <NavLink to={`/products/${product.id}`} class="btn btn-outline-dark">
+                              <NavLink to={`/products/${product._id}`} class="btn btn-outline-dark">
                                 Buy Now
                               </NavLink>
                             </div>

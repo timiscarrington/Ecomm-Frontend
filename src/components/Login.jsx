@@ -10,7 +10,7 @@ function Login() {
 
     const data = JSON.stringify({ email, password });
 
-    fetch("http://localhost:8000/api/token-auth/", {
+    fetch("http://localhost:4000/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

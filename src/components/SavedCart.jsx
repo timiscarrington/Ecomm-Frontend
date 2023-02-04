@@ -5,7 +5,7 @@ const SavedCart = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        const result = await fetch('http://localhost:8000/api/carts/');
+        const result = await fetch('http://localhost:4000/cart/');
         const carts = await result.json();
         setCarts(carts);
       };
@@ -14,7 +14,7 @@ const SavedCart = () => {
     }, []);
   
     const updateCart = async (cartId, updatedQty) => {
-      await fetch(`http://localhost:8000/api/carts/${cartId}/`, {
+      await fetch(`http://localhost:4000/cart/${cartId}/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ const SavedCart = () => {
       });
   
       const updatedCarts = carts.map(cart => {
-        if (cart.id === cartId) {
+        if (cart._id === cartId) {
           return { ...cart, qty: updatedQty };
         }
         return cart;
@@ -32,23 +32,23 @@ const SavedCart = () => {
     };
   
     const deleteCart = async cartId => {
-      await fetch(`http://localhost:8000/api/carts/${cartId}/`, {
+      await fetch(`http://localhost:4000/cart/${cartId}/`, {
         method: 'DELETE'
       });
   
-      const updatedCarts = carts.filter(cart => cart.id !== cartId);
+      const updatedCarts = carts.filter(cart => cart._id !== cartId);
       setCarts(updatedCarts);
     };
   
     return (
       <ul>
         {carts.map(cart => (
-          <li key={cart.id}>
+          <li key={cart._id}>
             {cart.product} - {cart.qty}
-            <button onClick={() => updateCart(cart.id, cart.qty + 1)}>
+            <button onClick={() => updateCart(cart._id, cart.qty + 1)}>
               Update
             </button>
-            <button onClick={() => deleteCart(cart.id)}>Delete</button>
+            <button onClick={() => deleteCart(cart._id)}>Delete</button>
           </li>
         ))}
       </ul>

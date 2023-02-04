@@ -69,12 +69,12 @@ const Cart = () => {
         const handleSaveCart = () => {
             
             const cartItems = state.map(item => ({
-                product: item.id,
+                product: item._id,
                 qty: item.qty,
                 image: item.image,
                 title: item.title
             }));
-            console.log(JSON.stringify(state))
+        
             cartItems.forEach(cartItem => {
                 const payload = {
                     product: cartItem.product,
@@ -83,8 +83,8 @@ const Cart = () => {
                     title: cartItem.title
                 };
 
-                console.log(JSON.stringify(state));
-                fetch("http://localhost:8000/api/carts/", {
+             console.log('payload', payload)
+                fetch("http://localhost:4000/cart", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
