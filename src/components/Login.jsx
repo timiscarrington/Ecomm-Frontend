@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ function Login() {
 
     const data = JSON.stringify({ email, password });
 
-    fetch("http://localhost:4000/", {
+    fetch("http://localhost:4000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +31,8 @@ function Login() {
           console.log(data.token);
           // Store the token in local storage or cookie
           localStorage.setItem("token", data.token);
-          // Redirect the user to protected page
+          // Redirect the user to the home page
+          window.location.replace("/");
         }
       })
       .catch((error) => {
@@ -40,10 +42,14 @@ function Login() {
 
   return (
     <div className="container">
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
       <form className="login-form" onSubmit={handleSubmit}>
-        {error && <div className="alert alert-danger">{error}</div>}
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
@@ -60,7 +66,7 @@ function Login() {
           </div>
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label>
           <input
@@ -69,14 +75,15 @@ function Login() {
             id="exampleInputPassword1"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            />
-            </div>
-            <button type="submit" className="btn btn-primary">
-            Submit
-            </button>
-            </form>
-            </div>
-            );
-            }
-            
-            export default Login;
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+
+}
+
+export default Login;

@@ -5,7 +5,7 @@ const SavedCart = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        const result = await fetch('http://localhost:4000/cart/');
+        const result = await fetch('http://localhost:4000/cart');
         const carts = await result.json();
         setCarts(carts);
       };
