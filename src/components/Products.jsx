@@ -13,7 +13,7 @@ const Products = () => {
     useEffect(() => {
         
         setLoading(true)
-        fetch(`/products`)
+        fetch(`https://a-listed-chew.herokuapp.com/products`)
           
             .then((response) => response.json())
             .then((data) => {

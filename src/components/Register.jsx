@@ -14,7 +14,7 @@ const Register = () => {
     setMessage('');
   
     try {
-      const response = await fetch(`/customers`, {
+      const response = await fetch(`https://a-listed-chew.herokuapp.com/customers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

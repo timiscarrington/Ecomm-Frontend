@@ -48,7 +48,7 @@ const handleSubmit = (e) => {
 
 // Function to make a POST request to the "/login" endpoint
 const loginRequest = (data) => {
-  return fetch(`/login`, {
+  return fetch(`https://a-listed-chew.herokuapp.com/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const loginRequest = (data) => {
 
 // Function to make a GET request to the "/customers/email" endpoint
 const getCustomerInformation = (email, token) => {
-  return fetch(`/customers/email?email=${email}`, {
+  return fetch(`https://a-listed-chew.herokuapp.com/customers/email?email=${email}`, {
       method: "GET",
       headers: {
           "Authorization": `Token ${token}`,

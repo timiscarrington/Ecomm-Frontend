@@ -15,7 +15,7 @@ const Navbar = () => {
 const handleLogout = () => {
 
   // The function makes a POST request to the logout endpoint with the token in the request header
-  fetch(`/logout`, {
+  fetch(`https://a-listed-chew.herokuapp.com/logout`, {
       method: "POST",
       headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`,

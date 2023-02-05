@@ -22,7 +22,7 @@ const addProduct = (product) => {
 useEffect(()=> {
     const getProduct = async () => {
         setLoading(true);
-        const response = await fetch(`/products/${id}`);
+        const response = await fetch(`https://a-listed-chew.herokuapp.com/products/${id}`);
         setProduct(await response.json());
         setLoading(false);
     }
