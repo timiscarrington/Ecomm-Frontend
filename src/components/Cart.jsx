@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { addCart, deleteCart } from "../redux/action";
@@ -7,6 +7,7 @@ const Cart = () => {
     const state = useSelector((state) => state.handleCart);
     const customer = useSelector(state => state.authReducer.customer);
     const dispatch = useDispatch();
+    const [newCart, setNewCart] = useState(null);
 console.log(customer._id)
 
     const handleAdd = (item) => {
@@ -77,32 +78,33 @@ console.log(customer._id)
             }));
           
             const postCart = async () => {
-                console.log(cartItems)
-                console.log(customer.first_name)
-              try {
-                const payload = {
+                try {
+                  const payload = {
                     customer: customer._id._id,
                     first_name: customer._id.first_name,
                     last_name: customer._id.last_name,
                     email: customer._id.email,
                     items: cartItems
-                };
-                const res = await fetch("http://localhost:4000/cart", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(payload),
-                });
-                console.log(res);
-              } catch (error) {
-                console.error(error);
-              }
-            };
+                  };
+                  const res = await fetch("http://localhost:4000/cart", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                  });
+                  const responseData = await res.json();
+                  console.log(responseData);
+                  setNewCart(responseData._id);
+                } catch (error) {
+                  console.error(error);
+                }
+              };
           
             postCart();
+           
           };
-
+          console.log(newCart)
         return (
             <>
                 <div className="container">
@@ -120,7 +122,7 @@ console.log(customer._id)
                             Proceed to Checkout
                         </NavLink>
                         <NavLink
-                            to="/saved-carts"
+                            to={`/saved-carts/${newCart}`}
                             className="btn btn-outline-info mb-5 w-25 mx-auto"
                         >
                             View Saved Carts

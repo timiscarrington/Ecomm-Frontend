@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -7,11 +8,12 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
-
+  
     try {
       const response = await fetch('http://localhost:4000/customers', {
         method: 'POST',
@@ -25,19 +27,26 @@ const Register = () => {
           password: password,
         }),
       });
-
+  
       if (!response.ok) {
         setMessage('Registration failed. Please try again.');
         throw new Error('Failed to register');
       }
-
+  
       const data = await response.json();
       console.log(data);
       setMessage('Registration successful!');
+  
+      setTimeout(() => {
+        if (response.ok) {
+          navigate('/login');
+        }
+      }, 2000);
     } catch (err) {
       console.error(err);
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>

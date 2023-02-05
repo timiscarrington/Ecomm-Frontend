@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
-import { logoutSuccess } from '../redux/action';
 import { FaUserAstronaut } from 'react-icons/fa'
 
 const Navbar = () => {
@@ -11,59 +10,66 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-    const handleLogout = () => {
+// handleLogout is a function that makes a POST request to the logout endpoint 
+//  with a `Authorization` header containing the user's token.
+const handleLogout = () => {
 
-        fetch("http://localhost:4000/logout", {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                // Remove the token from local storage or cookie
-                localStorage.removeItem("token");
-                dispatch({ type: "LOGOUT_SUCCESS" });
-                console.log("logout", isLoggedIn)
-                // Update the isLoggedIn state
-                navigate('/login');
-            })
-            .catch((error) => {
-                console.error("There was a problem with your fetch operation:", error);
-            });
-    };
+  // The function makes a POST request to the logout endpoint with the token in the request header
+  fetch("http://localhost:4000/logout", {
+      method: "POST",
+      headers: {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+      },
+  })
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error("Network response was not ok");
+          }
+          return response.json();
+      })
+      .then((data) => {
+          // Remove the token from local storage
+          localStorage.removeItem("token");
+          dispatch({ type: "LOGOUT_SUCCESS" });
+          dispatch({type : "RESET_HANDLECART"})
+          console.log("logout", isLoggedIn)
+          navigate('/login');
+      })
+      .catch((error) => {
+      
+          console.error("There was a problem with your fetch operation:", error);
+      });
+};
 
-    useEffect(() => {
-        setAuth(isLoggedIn);
-        console.log("use effect", auth, isLoggedIn)
-    }, [isLoggedIn]);
+// The useEffect hook updates the `auth` state whenever the `isLoggedIn` state changes
+useEffect(() => {
+ 
+  setAuth(isLoggedIn);
+  console.log("use effect", auth, isLoggedIn)
+}, [isLoggedIn]);
+
 
     return (
         <>
           <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm ">
             <div className="container">
-              <NavLink className="navbar-brand fw-bold fs-3 float-left" to="/">Star Chew</NavLink>
+              <NavLink className="navbar-brand fw-bold fs-3 float-left" to="/">A-Listed Chew</NavLink>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li className="nav-item">
-                    <NavLink className="nav-link active" aria-current="page" to="/products">Home</NavLink>
+                    <NavLink className="nav-link fw fs-4" aria-current="page" to="/">Home</NavLink>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item fw fs-4">
                     <NavLink className="nav-link" to="/products">Products</NavLink>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item fw fs-4">
                     <NavLink className="nav-link" to="/about">About</NavLink>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item fw fs-4">
                     <NavLink className="nav-link" to="/contact">Contatct</NavLink>
                   </li>
                 </ul>

@@ -11,76 +11,93 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-      
-        const data = JSON.stringify({ email, password });
-      
-        loginRequest(data)
-          .then((data) => {
-            if (data.non_field_errors) {
-              setError(data.non_field_errors[0]);
-            } else {
-              console.log(data.token);
-              localStorage.setItem("token", data.token);
-              dispatch({ type: "LOGIN_SUCCESS" });
-              getCustomerInformation(email, data.token)
-                .then((customer) => {
-                  console.log(customer);
-                })
-                .catch((error) => {
-                  console.error("Error in getCustomerInformation:", error);
-                  setError("An error occurred");
-                });
-            }
-          })
-          .catch((error) => {
-            console.error("Error in loginRequest:", error);
-            setError("An error occurred");
-          });
-      };
-      
-      const loginRequest = (data) => {
-        return fetch("http://localhost:4000/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: data,
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          });
-      };
-      
-      const getCustomerInformation = (email, token) => {
-        return fetch(`http://localhost:4000/customers/email?email=${email}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Token ${token}`,
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
+// Function for submitting login form
+const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Converts email and password to a JSON string
+    const data = JSON.stringify({ email, password });
+
+    // Calls the loginRequest function with the data and waits for its response
+    loginRequest(data)
+      .then((data) => {
+        // If the data contains non_field_errors, set error message
+        if (data.non_field_errors) {
+          setError(data.non_field_errors[0]);
+        } else {
+          // Store the token received in the local storage
+          console.log(data.token);
+          localStorage.setItem("token", data.token);
+
+          // Dispatch the login success action
+          dispatch({ type: "LOGIN_SUCCESS" });
+
+          // Call the getCustomerInformation function with email and token and wait for its response
+          getCustomerInformation(email, data.token)
             .then((customer) => {
-                console.log(customer)
-                dispatch(storeCustomerInformation({
-                _id: customer._id,    
-                email: customer.email,
-                first_name: customer.first_name,
-                last_name: customer.last_name
-                }));
-                // Redirect the user to the home page
-                console.log(store.getState().authReducer.customer);
-                navigate("/");
-                })
+              console.log(customer);
+            })
+            .catch((error) => {
+              console.error("Error in getCustomerInformation:", error);
+              setError("An error occurred");
+            });
+        }
+      })
+      .catch((error) => {
+        console.error("Error in loginRequest:", error);
+        setError("An error occurred");
+      });
+  };
+
+// Function to make a POST request to the "/login" endpoint
+const loginRequest = (data) => {
+  return fetch("http://localhost:4000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: data,
+  })
+    .then((response) => {
+      // If the response is not okay, throw an error
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      // Return the response as JSON
+      return response.json();
+    });
+};
+
+// Function to make a GET request to the "/customers/email" endpoint
+const getCustomerInformation = (email, token) => {
+  return fetch(`http://localhost:4000/customers/email?email=${email}`, {
+      method: "GET",
+      headers: {
+          "Authorization": `Token ${token}`,
+      },
+  })
+      .then((response) => {
+          // If the response is not okay, throw an error
+          if (!response.ok) {
+              throw new Error("Network response was not ok");
+          }
+          // Return the response as JSON
+          return response.json();
+      })
+      .then((customer) => {
+          console.log(customer)
+          // Dispatch the storeCustomerInformation action with the customer information
+          dispatch(storeCustomerInformation({
+          _id: customer._id,    
+          email: customer.email,
+          first_name: customer.first_name,
+          last_name: customer.last_name
+          }));
+          // Log the customer information in the state
+          console.log(store.getState().authReducer.customer);
+          // Redirect the user to the home page
+          navigate("/");
+          })
             .catch((error) => {
                 console.error("There was a problem with your fetch operation:", error);
                 throw error;

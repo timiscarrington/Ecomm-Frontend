@@ -37,7 +37,7 @@ console.log(loggedIn)
         <Route exact path="/login" element={
           <Login handleLogin={handleLogin} />
         } />
-        <Route exact path="/saved-carts" element={<SavedCart />} />
+        <Route exact path="/saved-carts/:id" element={<SavedCart />} />
       </Routes>
     </>
   );
