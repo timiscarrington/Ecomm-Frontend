@@ -5,7 +5,9 @@ import { addCart, deleteCart } from "../redux/action";
 
 const Cart = () => {
     const state = useSelector((state) => state.handleCart);
+    const customer = useSelector(state => state.authReducer.customer);
     const dispatch = useDispatch();
+console.log(customer._id)
 
     const handleAdd = (item) => {
         dispatch(addCart(item));
@@ -67,33 +69,39 @@ const Cart = () => {
     const buttons = () => {
         console.log(state)
         const handleSaveCart = () => {
-            
             const cartItems = state.map(item => ({
-                product: item._id,
-                qty: item.qty,
-                image: item.image,
-                title: item.title
+              product: item._id,
+              qty: 1,
+              title: item.title,
+              image: item.image
             }));
-        
-            cartItems.forEach(cartItem => {
+          
+            const postCart = async () => {
+                console.log(cartItems)
+                console.log(customer.first_name)
+              try {
                 const payload = {
-                    product: cartItem.product,
-                    qty: cartItem.qty,
-                    image: cartItem.image,
-                    title: cartItem.title
+                    customer: customer._id._id,
+                    first_name: customer._id.first_name,
+                    last_name: customer._id.last_name,
+                    email: customer._id.email,
+                    items: cartItems
                 };
-
-             console.log('payload', payload)
-                fetch("http://localhost:4000/cart", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(payload),
+                const res = await fetch("http://localhost:4000/cart", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(payload),
                 });
-            })
-        };
-
+                console.log(res);
+              } catch (error) {
+                console.error(error);
+              }
+            };
+          
+            postCart();
+          };
 
         return (
             <>

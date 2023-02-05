@@ -47,7 +47,9 @@ const Products = () => {
    
     //Filters products by using the filter method on the category
     const filterProduct = (category) => {
+        console.log(data)
         const updatedList = data.filter((x)=>x.category === category);
+        console.log(updatedList)
         setFilter(updatedList);
 
     }
@@ -76,31 +78,31 @@ const Products = () => {
                     {filter.map((product, index) => {
                       return (
                         <div className="col-md-3 mb-4">
-                          <div class="card h-100 text-center p-4" key={product._id}>
+                          <div className="card h-100 text-center p-4" key={product._id}>
                           <Carousel interval ={null}>
           <Carousel.Item>
             <img
               src={product.image}
-              class="card-img-top"
+              className="card-img-top d-flex align-items-center"
               alt={product.title}
-              height="250px"
-              width='auto'
+               height="250px"
+              width='100%'
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               src={product.image2}
-              class="card-img-top"
+              className="card-img-top d-flex align-items-center"
               alt={product.title}
               height="250px"
               width='100%'
             />
           </Carousel.Item>
         </Carousel>
-                            <div class="card-body">
-                              <h5 class="card-title mb-0">{product.title}</h5>
-                              <p class="card-text lead fw-bold">${product.price}</p>
-                              <NavLink to={`/products/${product._id}`} class="btn btn-outline-dark">
+                            <div className="card-body">
+                              <h5 className="card-title mb-0">{product.title}</h5>
+                              <p className="card-text lead fw-bold">${product.price}</p>
+                              <NavLink to={`/products/${product._id}`} className="btn btn-outline-dark">
                                 Buy Now
                               </NavLink>
                             </div>

@@ -1,47 +1,103 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import {useSelector} from "react-redux";
-
+import { useState, useEffect } from 'react'
+import { useNavigate, NavLink } from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux";
+import { logoutSuccess } from '../redux/action';
+import { FaUserAstronaut } from 'react-icons/fa'
 
 const Navbar = () => {
-const state = useSelector((state)=> state.handleCart)
+    const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+    const state = useSelector((state) => state.handleCart)
+    const [auth, setAuth] = useState(isLoggedIn);
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+
+        fetch("http://localhost:4000/logout", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                // Remove the token from local storage or cookie
+                localStorage.removeItem("token");
+                dispatch({ type: "LOGOUT_SUCCESS" });
+                console.log("logout", isLoggedIn)
+                // Update the isLoggedIn state
+                navigate('/login');
+            })
+            .catch((error) => {
+                console.error("There was a problem with your fetch operation:", error);
+            });
+    };
+
+    useEffect(() => {
+        setAuth(isLoggedIn);
+        console.log("use effect", auth, isLoggedIn)
+    }, [isLoggedIn]);
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm ">
-                <div className="container">
-                    <NavLink className="navbar-brand fw-bold fs-3" to="/">Star Chew</NavLink>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <NavLink className="nav-link active" aria-current="page" to="/products">Home</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/products">Products</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/about">About</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/contact">Contatct</NavLink>
-                            </li>
-                        </ul>
-                       <div className="buttons">
-                        <NavLink to="/login" className="btn btn-outline-dark">
-                          <i className="fa fa-sign-in me-1"></i> Login</NavLink>
-                        <NavLink to="/register" className="btn btn-outline-dark ms-2">
-                          <i className="fa fa-user-plus me-1"></i> Register</NavLink>
-                        <NavLink to="/cart" className="btn btn-danger ms-2">
-                          <i className="fa fa-shopping-cart me-1"></i> Cart ({state.length})</NavLink>
-                       </div>
+          <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm ">
+            <div className="container">
+              <NavLink className="navbar-brand fw-bold fs-3 float-left" to="/">Star Chew</NavLink>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                  <li className="nav-item">
+                    <NavLink className="nav-link active" aria-current="page" to="/products">Home</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/products">Products</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/about">About</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/contact">Contatct</NavLink>
+                  </li>
+                </ul>
+                <div className="buttons float-right">
+                  {auth ? (
+                    <div>
+                      
+                      <button className="btn btn-outline-dark me-1 ms-2" onClick={handleLogout}>
+                        Logout
+                      </button>
+                      <NavLink to="/cart" className="btn btn-danger ms-2 me-2">
+                        <i className="fa fa-shopping-cart me-1  mr-2"></i> Cart ({state.length})
+                      </NavLink>
+                      <FaUserAstronaut size={35}/>
                     </div>
+                  ) : (
+                    <>
+                      <NavLink to="/login" className="btn btn-outline-dark">
+                        <i className="fa fa-sign-in me-1"></i> Login
+                      </NavLink>
+                      <NavLink to="/register" className="btn btn-outline-dark ms-2">
+                        <i className="fa fa-user-plus me-1"></i> Register
+                      </NavLink>
+                      <NavLink to="/cart" className="btn btn-danger ms-2">
+                        <i className="fa fa-shopping-cart me-1"></i> Cart ({state.length})
+                      </NavLink>
+                    </>
+                  )}
                 </div>
-            </nav>
+              </div>
+            </div>
+          </nav>
         </>
-    )
+      )
 }
 
 export default Navbar
