@@ -8,7 +8,7 @@ const Cart = () => {
     const customer = useSelector(state => state.authReducer.customer);
     const dispatch = useDispatch();
     const [newCart, setNewCart] = useState(null);
-console.log(customer._id)
+
 
     const handleAdd = (item) => {
         dispatch(addCart(item));
@@ -68,7 +68,7 @@ console.log(customer._id)
         );
     };
     const buttons = () => {
-        console.log(state)
+       
         const handleSaveCart = () => {
             const cartItems = state.map(item => ({
               product: item._id,
@@ -94,7 +94,6 @@ console.log(customer._id)
                     body: JSON.stringify(payload)
                   });
                   const responseData = await res.json();
-                  console.log(responseData);
                   setNewCart(responseData._id);
                 } catch (error) {
                   console.error(error);
@@ -104,7 +103,7 @@ console.log(customer._id)
             postCart();
            
           };
-          console.log(newCart)
+         
         return (
             <>
                 <div className="container">

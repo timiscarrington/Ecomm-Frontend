@@ -33,7 +33,6 @@ const handleLogout = () => {
           localStorage.removeItem("token");
           dispatch({ type: "LOGOUT_SUCCESS" });
           dispatch({type : "RESET_HANDLECART"})
-          console.log("logout", isLoggedIn)
           navigate('/login');
       })
       .catch((error) => {
@@ -46,7 +45,6 @@ const handleLogout = () => {
 useEffect(() => {
  
   setAuth(isLoggedIn);
-  console.log("use effect", auth, isLoggedIn)
 }, [isLoggedIn]);
 
 

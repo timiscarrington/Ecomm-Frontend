@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -32,9 +31,7 @@ const Register = () => {
         setMessage('Registration failed. Please try again.');
         throw new Error('Failed to register');
       }
-  
       const data = await response.json();
-      console.log(data);
       setMessage('Registration successful!');
   
       setTimeout(() => {

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import  store  from '../redux/store'
 import { storeCustomerInformation } from "../redux/action";
 
 function Login() {
@@ -26,7 +25,6 @@ const handleSubmit = (e) => {
           setError(data.non_field_errors[0]);
         } else {
           // Store the token received in the local storage
-          console.log(data.token);
           localStorage.setItem("token", data.token);
 
           // Dispatch the login success action
@@ -35,7 +33,7 @@ const handleSubmit = (e) => {
           // Call the getCustomerInformation function with email and token and wait for its response
           getCustomerInformation(email, data.token)
             .then((customer) => {
-              console.log(customer);
+             
             })
             .catch((error) => {
               console.error("Error in getCustomerInformation:", error);
@@ -44,7 +42,6 @@ const handleSubmit = (e) => {
         }
       })
       .catch((error) => {
-        console.error("Error in loginRequest:", error);
         setError("An error occurred");
       });
   };
@@ -85,7 +82,6 @@ const getCustomerInformation = (email, token) => {
           return response.json();
       })
       .then((customer) => {
-          console.log(customer)
           // Dispatch the storeCustomerInformation action with the customer information
           dispatch(storeCustomerInformation({
           _id: customer._id,    
@@ -93,8 +89,6 @@ const getCustomerInformation = (email, token) => {
           first_name: customer.first_name,
           last_name: customer.last_name
           }));
-          // Log the customer information in the state
-          console.log(store.getState().authReducer.customer);
           // Redirect the user to the home page
           navigate("/");
           })

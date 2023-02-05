@@ -13,12 +13,10 @@ const Products = () => {
     useEffect(() => {
         
         setLoading(true)
-        console.log('Fetching...');
         fetch('/products')
           
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setData(data)
                 setFilter(data)
                 setLoading(false)
@@ -47,9 +45,7 @@ const Products = () => {
    
     //Filters products by using the filter method on the category
     const filterProduct = (category) => {
-        console.log(data)
         const updatedList = data.filter((x)=>x.category === category);
-        console.log(updatedList)
         setFilter(updatedList);
 
     }
