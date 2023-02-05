@@ -3,7 +3,7 @@ import Skeleton from "react-loading-skeleton"
 import { NavLink } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap'
 
-const Products = () => {
+const Products = ({apiUrl}) => {
 
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState(data);
@@ -13,7 +13,7 @@ const Products = () => {
     useEffect(() => {
         
         setLoading(true)
-        fetch('/products')
+        fetch(`${apiUrl}/products`)
           
             .then((response) => response.json())
             .then((data) => {

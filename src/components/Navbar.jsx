@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { FaUserAstronaut } from 'react-icons/fa'
 
-const Navbar = () => {
+const Navbar = ({apiUrl}) => {
     const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
     const state = useSelector((state) => state.handleCart)
     const [auth, setAuth] = useState(isLoggedIn);
@@ -15,7 +15,7 @@ const Navbar = () => {
 const handleLogout = () => {
 
   // The function makes a POST request to the logout endpoint with the token in the request header
-  fetch("/logout", {
+  fetch(`${apiUrl}/logout`, {
       method: "POST",
       headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -36,8 +36,6 @@ const handleLogout = () => {
           navigate('/login');
       })
       .catch((error) => {
-      
-          console.error("There was a problem with your fetch operation:", error);
       });
 };
 

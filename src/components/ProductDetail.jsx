@@ -7,7 +7,7 @@ import { Carousel } from 'react-bootstrap';
 
 
 
-const ProductDetail = () => {
+const ProductDetail = ({apiUrl}) => {
 
 
 const {id} = useParams();
@@ -22,7 +22,7 @@ const addProduct = (product) => {
 useEffect(()=> {
     const getProduct = async () => {
         setLoading(true);
-        const response = await fetch(`/products/${id}`);
+        const response = await fetch(`${apiUrl}/products/${id}`);
         setProduct(await response.json());
         setLoading(false);
     }

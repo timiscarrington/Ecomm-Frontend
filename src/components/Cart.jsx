@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { addCart, deleteCart } from "../redux/action";
 
-const Cart = () => {
+const Cart = ({apiUrl}) => {
     const state = useSelector((state) => state.handleCart);
     const customer = useSelector(state => state.authReducer.customer);
     const dispatch = useDispatch();
@@ -86,7 +86,7 @@ const Cart = () => {
                     email: customer._id.email,
                     items: cartItems
                   };
-                  const res = await fetch("/cart", {
+                  const res = await fetch(`${apiUrl}/cart`, {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json"

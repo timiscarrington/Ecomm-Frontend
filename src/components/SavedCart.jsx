@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Image, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 
-const SavedCart = () => {
+const SavedCart = ({apiUrl}) => {
     const [carts, setCarts] = useState([]);
     const {id} = useParams();
     const [updatedQty, setUpdatedQty] = useState(1);
 
     useEffect(() => {
       const fetchData = async () => {
-        const result = await fetch(`/cart/${id}`);
+        const result = await fetch(`${apiUrl}/cart/${id}`);
         const carts = await result.json();
         setCarts([carts]);
       };
@@ -18,7 +18,7 @@ const SavedCart = () => {
     }, [id]);
 
     const handleDelete = async (itemId) => {
-      await fetch(`/cart/${id}/items/${itemId}`, {
+      await fetch(`${apiUrl}/cart/${id}/items/${itemId}`, {
         method: 'DELETE'
       });
       const updatedCarts = carts.map(cart => {
@@ -31,7 +31,7 @@ const SavedCart = () => {
 
     const handleUpdateItem = async (itemId, updatedQty, item) => {
       try {
-        const result = await fetch(`/cart/${id}/item/${itemId}`, {
+        const result = await fetch(`${apiUrl}/cart/${id}/item/${itemId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
