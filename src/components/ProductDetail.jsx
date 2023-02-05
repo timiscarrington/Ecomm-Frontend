@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { addCart } from '../redux/action';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useNavigate} from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import { Carousel } from 'react-bootstrap';
 
@@ -13,10 +13,12 @@ const ProductDetail = () => {
 const {id} = useParams();
 const [product, setProduct] = useState ([]);
 const [loading, setLoading] = useState(false);
+const navigate = useNavigate()
 
 const dispatch = useDispatch();
 const addProduct = (product) => {
     dispatch(addCart(product));
+    navigate('/products')
 }
 
 useEffect(()=> {

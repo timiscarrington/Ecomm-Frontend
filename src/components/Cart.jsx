@@ -86,7 +86,7 @@ const Cart = () => {
                     email: customer._id.email,
                     items: cartItems
                   };
-                  const res = await fetch(`https://a-listed-chew.herokuapp.com/cart`, {
+                  const res = await fetch(`/cart`, {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json"
