@@ -9,7 +9,7 @@ const SavedCart = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-        const result = await fetch(`http://localhost:4000/cart/${id}`);
+        const result = await fetch(`/cart/${id}`);
         const carts = await result.json();
         setCarts([carts]);
       };
@@ -18,7 +18,7 @@ const SavedCart = () => {
     }, [id]);
 
     const handleDelete = async (itemId) => {
-      await fetch(`http://localhost:4000/cart/${id}/items/${itemId}`, {
+      await fetch(`/cart/${id}/items/${itemId}`, {
         method: 'DELETE'
       });
       const updatedCarts = carts.map(cart => {
@@ -31,7 +31,7 @@ const SavedCart = () => {
 
     const handleUpdateItem = async (itemId, updatedQty, item) => {
       try {
-        const result = await fetch(`http://localhost:4000/cart/${id}/item/${itemId}`, {
+        const result = await fetch(`/cart/${id}/item/${itemId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'

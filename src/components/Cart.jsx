@@ -86,7 +86,7 @@ console.log(customer._id)
                     email: customer._id.email,
                     items: cartItems
                   };
-                  const res = await fetch("http://localhost:4000/cart", {
+                  const res = await fetch("/cart", {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json"

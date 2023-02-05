@@ -22,7 +22,7 @@ const addProduct = (product) => {
 useEffect(()=> {
     const getProduct = async () => {
         setLoading(true);
-        const response = await fetch(`http://localhost:4000/products/${id}`);
+        const response = await fetch(`/products/${id}`);
         setProduct(await response.json());
         setLoading(false);
     }

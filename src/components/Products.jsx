@@ -14,7 +14,7 @@ const Products = () => {
         
         setLoading(true)
         console.log('Fetching...');
-        fetch('http://localhost:4000/products')
+        fetch('/products')
           
             .then((response) => response.json())
             .then((data) => {

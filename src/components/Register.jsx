@@ -15,7 +15,7 @@ const Register = () => {
     setMessage('');
   
     try {
-      const response = await fetch('http://localhost:4000/customers', {
+      const response = await fetch('/customers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

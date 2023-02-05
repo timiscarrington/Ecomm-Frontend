@@ -15,7 +15,7 @@ const Navbar = () => {
 const handleLogout = () => {
 
   // The function makes a POST request to the logout endpoint with the token in the request header
-  fetch("http://localhost:4000/logout", {
+  fetch("/logout", {
       method: "POST",
       headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`,
