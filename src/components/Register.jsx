@@ -38,7 +38,7 @@ const Register = () => {
         if (response.ok) {
           navigate('/login');
         }
-      }, 2000);
+      }, 1200);
     } catch (err) {
       console.error(err);
     }
@@ -47,7 +47,7 @@ const Register = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-group">
+      <div className="form-group col-6 ">
         <label htmlFor="username">First Name</label>
         <input
           type="text"
@@ -57,7 +57,7 @@ const Register = () => {
           onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
-      <div className="form-group">
+      <div className="form-group col-6">
         <label htmlFor="username">Last Name</label>
         <input
           type="text"
@@ -68,7 +68,7 @@ const Register = () => {
         />
       </div>
 
-      <div className="form-group">
+      <div className="form-group col-6">
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -78,7 +78,7 @@ const Register = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div className="form-group">
+      <div className="form-group col-6">
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -88,7 +88,7 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <div className="form-group">
+      <div className="form-group col-6">
         <button type="submit" className="btn btn-primary">
           Register
         </button>
