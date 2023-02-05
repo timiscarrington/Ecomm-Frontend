@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { storeCustomerInformation } from "../redux/action";
 
-function Login({apiUrl}) {
+function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
@@ -48,7 +48,7 @@ const handleSubmit = (e) => {
 
 // Function to make a POST request to the "/login" endpoint
 const loginRequest = (data) => {
-  return fetch(`${apiUrl}/login`, {
+  return fetch(`/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const loginRequest = (data) => {
 
 // Function to make a GET request to the "/customers/email" endpoint
 const getCustomerInformation = (email, token) => {
-  return fetch(`${apiUrl}/customers/email?email=${email}`, {
+  return fetch(`/customers/email?email=${email}`, {
       method: "GET",
       headers: {
           "Authorization": `Token ${token}`,

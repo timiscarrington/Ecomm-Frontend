@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Register = ({apiUrl}) => {
+const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const Register = ({apiUrl}) => {
     setMessage('');
   
     try {
-      const response = await fetch(`${apiUrl}/customers`, {
+      const response = await fetch(`/customers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
