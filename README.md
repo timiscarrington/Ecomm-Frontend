@@ -1,14 +1,17 @@
-##A-List Chew
+#Overview
+
 -A-List Chew is an e-commerce platform for the ultimate celebrity fan. Our platform offers the unique opportunity to purchase gum that has been chewed by your favorite celebrities, pop stars, and athletes. The gum is categorized by type of fame, making it easy for you to find what you're looking for. You can choose your favorite products, see where the gum was collected, and learn about the era of the star in question. With a simple shopping cart and checkout process, you can have your own piece of celebrity memorabilia in no time.
 
-##Features
+#Features
+
 -Wide selection of chewed gum by celebrities, pop stars, and athletes
 Products categorized by type of fame (actor, musician, athlete, etc.)
 Information about where the gum was collected and the era of the star
 Easy-to-use shopping cart and checkout process
 
 
-##Getting Started
+#Getting Started
+
 -Visit the A-List Chew website
 -Browse through the various categories of celebrities
 -Select the product(s) you're interested in
@@ -16,10 +19,15 @@ Easy-to-use shopping cart and checkout process
 -Checkout and complete your purchase (coming soon)
 
 -<img src="https://raw.githubusercontent.com/timiscarrington/Ecomm-Frontend/main/gumstorehome.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
+
 -<img src="https://raw.githubusercontent.com/timiscarrington/Ecomm-Frontend/main/gumstore2.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
+
 -<img src="https://raw.githubusercontent.com/timiscarrington/Ecomm-Frontend/main/gumstore1.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
+
 -<img src="https://raw.githubusercontent.com/timiscarrington/Ecomm-Frontend/main/gumstor4.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
+
 -<img src="https://raw.githubusercontent.com/timiscarrington/Ecomm-Frontend/main/gumstor5.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
+
 -<img src="https://raw.githubusercontent.com/timiscarrington/Ecomm-Frontend/main/gumstor6.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
 
 
