@@ -122,7 +122,7 @@ const Cart = () => {
                   >
                     Proceed to Checkout
                   </NavLink>
-                  {newCart && (
+                  {customer._id && (
                     <NavLink
                       to={`/saved-carts/${newCart}`}
                       className="btn btn-outline-info mb-5 w-25 mx-auto"
