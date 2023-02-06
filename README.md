@@ -1,3 +1,11 @@
+#Link: 
+URL: URL : https://a-list-chew.netlify.app/
+Backend: https://a-listed-chew.herokuapp.com/
+
+#Github
+Backend Repo: https://github.com/timiscarrington/E-comm_Backend
+
+
 #Overview
 
 -A-List Chew is an e-commerce platform for the ultimate celebrity fan. Our platform offers the unique opportunity to purchase gum that has been chewed by your favorite celebrities, pop stars, and athletes. The gum is categorized by type of fame, making it easy for you to find what you're looking for. You can choose your favorite products, see where the gum was collected, and learn about the era of the star in question. With a simple shopping cart and checkout process, you can have your own piece of celebrity memorabilia in no time.
