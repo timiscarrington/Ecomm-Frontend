@@ -86,7 +86,7 @@ const Cart = () => {
                     email: customer._id.email,
                     items: cartItems
                   };
-                  const res = await fetch(`/cart`, {
+                  const res = await fetch(`https://a-listed-chew.herokuapp.com/cart`, {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json"
@@ -94,6 +94,7 @@ const Cart = () => {
                     body: JSON.stringify(payload)
                   });
                   const responseData = await res.json();
+                  console.log(responseData._id)
                   setNewCart(responseData._id);
                 } catch (error) {
                   console.error(error);
