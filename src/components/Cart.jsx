@@ -108,28 +108,28 @@ const Cart = () => {
             <>
               <div className="container">
                 <div className="row">
-                  {customer._id && (
+                 
                     <button
                       className="btn btn-outline-primary mb-5 w-25 mx-auto"
                       onClick={handleSaveCart}
                     >
                       Save Cart
                     </button>
-                  )}
+                  
                   <NavLink
                     to="/checkout"
                     className="btn btn-outline-danger mb-5 w-25 mx-auto"
                   >
                     Proceed to Checkout
                   </NavLink>
-                  {customer._id && (
+                  
                     <NavLink
                       to={`/saved-carts/${newCart}`}
                       className="btn btn-outline-info mb-5 w-25 mx-auto"
                     >
                       View Saved Carts
                     </NavLink>
-                  )}
+                 
                 </div>
               </div>
             </>
