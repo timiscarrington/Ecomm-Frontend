@@ -99,7 +99,7 @@ const Products = () => {
                               <h5 className="card-title mb-0">{product.title}</h5>
                               <p className="card-text lead fw-bold">${product.price}</p>
                               <NavLink to={`/products/${product._id}`} className="btn btn-outline-dark">
-                                Buy Now
+                                View
                               </NavLink>
                             </div>
                           </div>

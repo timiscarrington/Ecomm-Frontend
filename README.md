@@ -15,7 +15,7 @@ Easy-to-use shopping cart and checkout process
 -Add the product(s) to your shopping cart
 -Checkout and complete your purchase (coming soon)
 
--<img src="./assets/gumstorehome.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
+-<img src="https://imgur.com/NeL8i4H" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
 -<img src="./assets/gumstore1.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
 -<img src="./assets/gumstore2.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>
 -<img src="./assets/gumstore3.png" style="display: inline-block; margin: 0 auto; max-width: 150px"/>

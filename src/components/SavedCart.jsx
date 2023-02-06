@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { Card, Image, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
+import {FaTrashAlt} from 'react-icons/fa'
 
 const SavedCart = () => {
     const [carts, setCarts] = useState([]);
     const {id} = useParams();
     const [updatedQty, setUpdatedQty] = useState(1);
+   
 
     useEffect(() => {
       const fetchData = async () => {
@@ -55,47 +57,68 @@ const SavedCart = () => {
   
     return (
       <>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div className="d-flex justify-content-center align-items-center h-100">
       {carts.map((carts) => (
-      <Card key={carts._id} style={{ width: '300px', height: '400px' }}>
-        <Card.Header>
-          Customer Information
-        </Card.Header>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>
-            Name: {carts.first_name} {carts.last_name}
-            <br />
-            Email: {carts.email}
-          </ListGroupItem>
-        </ListGroup>
-        <Card.Header>
-          Cart Information
-        </Card.Header>
-        <ListGroup className="list-group-flush">
-          {carts.items.map((item) => (
-            <ListGroupItem key={item._id}>
-              <Image src={item.image} alt={item.title} thumbnail style={{ height:'100px', width: '100px' }} />
-              <br />
-Title: {item.title}
-<br />
-Quantity: {item.qty}
-<br />
-<form onSubmit={(e) => {
-e.preventDefault();
-handleUpdateItem(item._id, updatedQty, item);
-}}>
-<input type="number" value={updatedQty} onChange={(e) => setUpdatedQty(e.target.value)} />
-<button type="submit">Update</button>
-</form>
-<Button variant="danger" style={{ marginRight: '1rem' }} onClick={() => handleDelete(item._id)}>
-Delete Item
-</Button></ListGroupItem>))}
-</ListGroup>
-</Card>
-  ))}
-  </div>
-  </>
-);
+      <Card key={carts._id} className="d-flex flex-column w-400 mb-3">
+      <Card.Header>
+      Customer Information
+      </Card.Header>
+      <ListGroup className="list-group-flush flex-grow-1">
+      <ListGroupItem>
+      Name: {carts.first_name} {carts.last_name}
+      <br />
+      Email: {carts.email}
+      </ListGroupItem>
+      </ListGroup>
+      <Card.Header>
+      Cart Information
+      </Card.Header>
+      <Card.Body style={{ overflowY: 'auto'}}>
+      <ListGroup className="list-group-flush">
+      {carts.items.map((item) => (
+      <ListGroupItem key={item._id} className="d-flex align-items-center">
+      <Image src={item.image} alt={item.title} thumbnail style={{ height: '100px', width: '100px' }} />
+      <div className="ml-3">
+      Title: {item.title}
+      <br />
+      Quantity: {item.qty}
+      <br />
+      <form onSubmit={(e) => {
+      e.preventDefault();
+      handleUpdateItem(item._id, updatedQty, item);
+      }} className="d-flex align-items-center">
+      <input type="number" value={updatedQty} onChange={(e) => setUpdatedQty(e.target.value)} className="form-control form-control-sm mr-1" />
+      <button type="submit" className="btn btn-primary btn-sm">Update</button>
+      
+      <Button variant="danger" className="btn btn-danger btn-sm ml-2" onClick={() => handleDelete(item._id)}>
+      <FaTrashAlt/>
+      </Button>
+      </form>
+      </div>
+      </ListGroupItem>
+      ))}
+      </ListGroup>
+      </Card.Body>
+      </Card>
+      ))}
+      </div>
+      <div className='d-flex justify-content-center align-items-center'>
+      <NavLink
+                    to="/checkout"
+                    className="btn btn-outline-danger mb-5 w-25 mx-2"
+                  >
+                    Proceed to Checkout
+                  </NavLink>
+                  <NavLink
+                    to="/"
+                    className="btn btn-outline-primary mb-5 w-25 mx-2"
+                  >
+                    Home
+                  </NavLink>
+      </div>
+      </>
+      );
+    
 }
 
 export default SavedCart;
