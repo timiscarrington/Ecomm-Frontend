@@ -12,7 +12,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
-  
+
     try {
       const response = await fetch(`https://a-listed-chew.herokuapp.com/customers`, {
         method: 'POST',
@@ -26,14 +26,14 @@ const Register = () => {
           password: password,
         }),
       });
-  
+
       if (!response.ok) {
         setMessage('Registration failed. Please try again.');
         throw new Error('Failed to register');
       }
       const data = await response.json();
       setMessage('Registration successful!');
-  
+
       setTimeout(() => {
         if (response.ok) {
           navigate('/login');
@@ -43,7 +43,7 @@ const Register = () => {
       console.error(err);
     }
   };
-  
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -95,11 +95,11 @@ const Register = () => {
       </div>
       {message && (
         <div className="alert alert-info">
-            {message}
+          {message}
         </div>
-        )}
-        </form>
-);
+      )}
+    </form>
+  );
 };
 
 export default Register;
