@@ -1,30 +1,28 @@
-#Link: 
-URL: URL : https://a-list-chew.netlify.app/
-Backend: https://a-listed-chew.herokuapp.com/
-
-#Github
-Backend Repo: https://github.com/timiscarrington/E-comm_Backend
+# Live Site:
+[A-Listed Chew](https://a-list-chew.netlify.app/)
 
 
-#Overview
+# Github
+[Backend Repo](https://github.com/timiscarrington/E-comm_Backend)
 
--A-List Chew is an e-commerce platform for the ultimate celebrity fan. Our platform offers the unique opportunity to purchase gum that has been chewed by your favorite celebrities, pop stars, and athletes. The gum is categorized by type of fame, making it easy for you to find what you're looking for. You can choose your favorite products, see where the gum was collected, and learn about the era of the star in question. With a simple shopping cart and checkout process, you can have your own piece of celebrity memorabilia in no time.
+# Overview
 
-#Features
+A-List Chew is an e-commerce platform for the ultimate celebrity fan. Our platform offers the unique opportunity to purchase gum that has been chewed by your favorite celebrities, pop stars, and athletes. The gum is categorized by type of fame, making it easy for you to find what you're looking for. You can choose your favorite products, see where the gum was collected, and learn about the era of the star in question. With a simple shopping cart and checkout process, you can have your own piece of celebrity memorabilia in no time.
 
--Wide selection of chewed gum by celebrities, pop stars, and athletes
-Products categorized by type of fame (actor, musician, athlete, etc.)
-Information about where the gum was collected and the era of the star
-Easy-to-use shopping cart and checkout process
+# Features
 
+- Wide selection of chewed gum by celebrities, pop stars, and athletes
+- Products categorized by type of fame (actor, musician, athlete, etc.)
+- Information about where the gum was collected and the era of the star
+- Easy-to-use shopping cart and checkout process
 
-#Getting Started
+# Getting Started
 
--Visit the A-List Chew website
--Browse through the various categories of celebrities
--Select the product(s) you're interested in
--Add the product(s) to your shopping cart
--Checkout and complete your purchase (coming soon)
+1. Visit the A-List Chew website
+2. Browse through the various categories of celebrities
+3. Select the product(s) you're interested in
+4. Add the product(s) to your shopping cart
+5. Checkout and complete your purchase (coming soon)
 
 
 
@@ -61,7 +59,7 @@ Easy-to-use shopping cart and checkout process
 - ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
 - ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
-## Future Featrues
+# Future Featrues
 
 - [] carts only saved after purchase
 - [] favorites tab for users
