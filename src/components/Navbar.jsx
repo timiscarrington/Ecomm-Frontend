@@ -66,7 +66,7 @@ const Navbar = () => {
                 <NavLink className="nav-link" to="/about">About</NavLink>
               </li>
               <li className="nav-item fw fs-4">
-                <NavLink className="nav-link" to="/contact">Contatct</NavLink>
+                <NavLink className="nav-link" to="/contact">Contact</NavLink>
               </li>
             </ul>
             <div className="buttons float-right">

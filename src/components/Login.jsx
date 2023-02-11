@@ -121,7 +121,7 @@ function Login() {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            placeholder="indian@gmail.com"
+            placeholder="email@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
